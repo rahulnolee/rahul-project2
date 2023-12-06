@@ -38,14 +38,14 @@ const handleGetProducts = async() => {
 };
 
 //POST PRODUCT
-const handlePostProduct = async () => {
+const handlePostProduct = async (product) => {
   const postProduct = {
-    id: products.id,
-    productName: products.productName,
-    brand: products.brand,
-    quantity: products.quantity,
-    image: products.image,
-    price: products.price
+    id: product.id,
+    productName: product.productName,
+    brand: product.brand,
+    quantity: product.quantity,
+    image: product.image,
+    price: product.price
 
 
   };
@@ -97,7 +97,7 @@ const handlePostProduct = async () => {
   const handleProductDelete = async(product) => {
     const id = product._id;
     axios 
-    .delete(`http://localhost:3001/product/${id}`)
+    .delete(`http://localhost:3001/products/${id}`)
     .then((response) => setResponseData(<p>{response.data}</p>));
   }
 
@@ -139,6 +139,7 @@ const handlePostProduct = async () => {
         list={products} 
         onClick={handleAddToCart} 
         handleProductDelete={handleProductDelete}
+        handleToggleEdit = {handleToggleEdit}
          />
         <CartList
           cartList={cartList}
